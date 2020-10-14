@@ -1,0 +1,36 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: cmv-resload
+  servlet:
+    multipart:
+      max-request-size: 10485760
+      max-file-size: 10485760
+
+#分页pageHelper
+pagehelper:
+  # 设置数据库类型
+  helperDialect: mysql
+  #开启合理化：页码<=0 查询第一页，页码>=总页数查询最后一页
+  reasonable: true
+  #支持通过 Mapper 接口参数来传递分页参数
+  supportMethodsArguments: true
+  # 参数  成员变量 = ${ xx}
+  params: count=countSql;offsetAsPageNum=true;rowBoundsWithCount=true;reasonable=true
+
+upload:
+  obs:
+    endPoint: https://obs.cn-south-1.myhuaweicloud.com
+    accessKey: D4TU0VCP4MBVGUH1FCPW
+    secretKey: a5XH40Hg3embq2sy2zL6qSmoWMl06rdWmMhznSww
+    bucketName: banner
+    showImageHost: https://mycmv.cn-south-1.huaweicloud.com/
+
+mybatis:
+  #mysql 环境
+  mapperLocations: classpath:mysql/com/mycmv/books/*.xml
+logging:
+  config: classpath:log4j2.xml
+  level:
+    com.mycmv.fms.refund.mapper: trace
