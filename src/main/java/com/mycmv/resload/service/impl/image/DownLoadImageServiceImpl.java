@@ -34,7 +34,7 @@ public class DownLoadImageServiceImpl implements DownLoadImageService {
 
     @Override
     public void download(String url, String savePath) {
-        logger.info("download {} \n\t\t\t savePath:{}", url, savePath);
+        logger.info("download {}  savePath:{}", url, savePath);
         downLoadItem(url, savePath);
         logger.info("download {} 结束", url);
     }

@@ -1,6 +1,6 @@
 package com.mycmv.resload.utils;
 
-import com.mycmv.resload.model.article.entry.ArticleInfo;
+import com.mycmv.resload.model.book.ArticleInfo;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
