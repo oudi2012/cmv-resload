@@ -11,7 +11,7 @@ import java.util.List;
  * @author a
  * @param <T>
  */
-public interface ExamInfoMapper<T extends ResBean> {
+public interface ResBeanMapper<T extends ResBean> {
 
     /***
      * 列表
