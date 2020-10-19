@@ -19,6 +19,7 @@ public class LoadChapterRest {
     @Resource
     private DownLoadImageService downLoadImageService;
 
+    //https://mmbiz.qpic.cn/mmbiz_jpg/guIn6laxV5iacUI7gm1OZwCFybTfUEZzc5eARWg2BalaS8gBU7vbz2r9huicrjr4AwILmo3rDEK3IibsLKDlianF2g/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1
     private static final String SAVE_PATH = "";
 
     @GetMapping("loadChapter")

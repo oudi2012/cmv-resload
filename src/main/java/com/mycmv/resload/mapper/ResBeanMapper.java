@@ -21,11 +21,25 @@ public interface ResBeanMapper<T extends ResBean> {
     List<T> list(T t);
 
     /***
+     * 列表
+     * @param idList idList
+     * @return List
+     */
+    List<T> listByIds(@Param("list")List<Long> idList);
+
+    /***
      * 详细
      * @param id id
      * @return obj
      */
-    T findById(int id);
+    T findById(long id);
+
+    /***
+     * 单条
+     * @param t t
+     * @return obj
+     */
+    T findOne(T t);
 
     /***
      * 添加

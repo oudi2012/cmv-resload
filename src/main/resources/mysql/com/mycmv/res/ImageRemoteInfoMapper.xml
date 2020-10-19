@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mycmv.resload.mapper.ImageRemoteInfoMapper">
+
+    <sql id="column">
+        id, title, url, cateId, orderNo, creator, createTime
+    </sql>
+
+    <sql id="where">
+        <if test="title != null"> and  title like concat('%', #{title}, '%') </if>
+        <if test="cateId != null">and  cateId = #{cateId} </if>
+        <if test="creator != null">and  creator = #{creator} </if>
+    </sql>
+
+    <select id="list" resultType="com.mycmv.resload.model.image.ImageRemoteInfo">
+        select
+            <include refid="column" />
+        from r_image_remote_info
+        <where>
+            <include refid="where" />
+        </where>
+    </select>
+
+    <select id="listByIds" resultType="com.mycmv.resload.model.image.ImageRemoteInfo">
+        select
+        <include refid="column" />
+        from r_image_remote_info
+        <where>
+            id in (
+            <foreach collection="list" index="index" item="item" separator=",">
+                #{item}
+            </foreach>)
+        </where>
+    </select>
+
+    <select id="findById" parameterType="int" resultType="com.mycmv.resload.model.image.ImageRemoteInfo">
+        select
+        <include refid="column" />
+        from r_image_remote_info
+        <where>
+            id = #{id}
+        </where>
+    </select>
+
+    <select id="findOne" resultType="com.mycmv.resload.model.image.ImageRemoteInfo">
+        select
+        <include refid="column" />
+        from r_image_remote_info
+        <where>
+            <include refid="where" />
+        </where>
+        limit 1
+    </select>
+
+    <insert id="insert" parameterType="com.mycmv.resload.model.image.ImageRemoteInfo">
+        insert into r_image_remote_info (title, url, cateId, orderNo, creator, createTime)
+        values (#{title}, #{url}, #{cateId}, #{orderNo}, #{creator}, UNIX_TIMESTAMP())
+    </insert>
+
+    <insert id="batchInsert" parameterType="java.util.List">
+        <foreach collection="list" index="index" item="item" separator=";">
+            insert into r_image_remote_info (title, url, cateId, orderNo, creator, createTime)
+            values (#{item.title}, #{item.url}, #{item.cateId}, #{item.orderNo}, #{item.creator}, UNIX_TIMESTAMP())
+        </foreach>
+    </insert>
+
+    <update id="update" parameterType="com.mycmv.resload.model.image.ImageRemoteInfo">
+        update r_image_remote_info
+        <set>
+            <if test="title != null">  title = #{title}, </if>
+            <if test="url != null">  url = #{url}, </if>
+            <if test="cateId != null">  cateId = #{cateId}, </if>
+            <if test="orderNo != null">  orderNo = #{orderNo}, </if>
+        </set>
+        <where>
+            id = #{id}
+        </where>
+    </update>
+    
+    <delete id="delete" parameterType="java.util.List">
+        delete from r_image_remote_info where id in (
+        <foreach collection="idList" index="index" item="item" separator=",">
+            #{item}
+        </foreach>)
+    </delete>
+
+</mapper>
