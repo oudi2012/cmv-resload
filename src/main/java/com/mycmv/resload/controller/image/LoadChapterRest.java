@@ -1,4 +1,4 @@
-package com.mycmv.resload.controller;
+package com.mycmv.resload.controller.image;
 
 
 import com.mycmv.resload.model.ResponseObject;

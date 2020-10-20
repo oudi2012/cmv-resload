@@ -12,7 +12,6 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class ImageRemoteCate extends ResBean {
-    private Long id;
     private String title;
     private Integer orderNo;
     private Long creator;
