@@ -1,5 +1,6 @@
 package com.mycmv.resload;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -15,6 +16,7 @@ import java.net.UnknownHostException;
  */
 @SpringBootApplication
 @ComponentScan(basePackages = {"com.mycmv"})
+@MapperScan("com.mycmv.resload.mapper")
 public class CmvResLoadApplication {
 
 	private static final Logger log = LoggerFactory.getLogger(CmvResLoadApplication.class);

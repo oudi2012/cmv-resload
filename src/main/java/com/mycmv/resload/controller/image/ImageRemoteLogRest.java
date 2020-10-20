@@ -5,8 +5,8 @@ import com.github.pagehelper.PageInfo;
 import com.mycmv.resload.constants.LogConstants;
 import com.mycmv.resload.model.LongIdListVo;
 import com.mycmv.resload.model.ResponseObject;
-import com.mycmv.resload.model.image.ImageRemoteCate;
-import com.mycmv.resload.service.image.ImageRemoteCateService;
+import com.mycmv.resload.model.image.ImageRemoteLog;
+import com.mycmv.resload.service.image.ImageRemoteLogService;
 import com.mycmv.resload.utils.CommonUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,21 +23,21 @@ import java.util.List;
  * @author a
  */
 @RestController
-@RequestMapping("ImageRemoteCate")
-public class ImageRemoteCateRest {
+@RequestMapping("ImageRemoteLog")
+public class ImageRemoteLogRest {
 
     private static final Logger logger = LoggerFactory.getLogger(LogConstants.ADM_LOG);
 
     @Resource
-    private ImageRemoteCateService imageRemoteCateService;
+    private ImageRemoteLogService imageRemoteLogService;
 
     @ResponseBody
     @GetMapping("pageList")
-    public ResponseObject pageList(ImageRemoteCate item, int pageIndex, int pageSize) {
-        String url = "ImageRemoteCate/pageList";
+    public ResponseObject pageList(ImageRemoteLog item, int pageIndex, int pageSize) {
+        String url = "ImageRemoteLog/pageList";
         logger.info("访问 {} , 参数：{}，{}，{}", url, JSON.toJSON(item), pageIndex, pageSize);
         ResponseObject responseObject = new ResponseObject();
-        PageInfo<ImageRemoteCate> pageInfo = imageRemoteCateService.pageList(item, pageIndex, pageSize);
+        PageInfo<ImageRemoteLog> pageInfo = imageRemoteLogService.pageList(item, pageIndex, pageSize);
         logger.info("返回结果 list 条数：{}", pageInfo.getSize());
         CommonUtils.executeSuccess(responseObject, pageInfo);
         return responseObject;
@@ -47,11 +47,11 @@ public class ImageRemoteCateRest {
     
     @ResponseBody
     @GetMapping("list")
-    public ResponseObject list(ImageRemoteCate item) {
-        String url = "ImageRemoteCate/list";
+    public ResponseObject list(ImageRemoteLog item) {
+        String url = "ImageRemoteLog/list";
         logger.info("访问 {} , 参数：{}", url, JSON.toJSON(item));
         ResponseObject responseObject = new ResponseObject();
-        List<ImageRemoteCate> list = imageRemoteCateService.list(item);
+        List<ImageRemoteLog> list = imageRemoteLogService.list(item);
         if (CollectionUtils.isEmpty(list)) {
             logger.info("返回结果 list 条数：0");
         } else {
@@ -66,10 +66,10 @@ public class ImageRemoteCateRest {
     @ResponseBody
     @GetMapping("findById")
     public ResponseObject findById(int id) {
-        String url = "ImageRemoteCate/findById";
+        String url = "ImageRemoteLog/findById";
         logger.info("访问 {} , 参数：{}", url, id);
         ResponseObject responseObject = new ResponseObject();
-        ImageRemoteCate tmp = imageRemoteCateService.findById(id);
+        ImageRemoteLog tmp = imageRemoteLogService.findById(id);
         if (ObjectUtils.isEmpty(tmp)) {
             logger.info("返回结果 null");
         } else {
@@ -83,12 +83,12 @@ public class ImageRemoteCateRest {
     
     @ResponseBody
     @PostMapping("create")
-    public ResponseObject create(@RequestBody ImageRemoteCate item) {
-        String url = "ImageRemoteCate/create";
+    public ResponseObject create(@RequestBody ImageRemoteLog item) {
+        String url = "ImageRemoteLog/create";
         logger.info("访问 {} , 参数：{}", url, JSON.toJSON(item));
         ResponseObject responseObject = new ResponseObject();
         item.setOrderNo(0);
-        imageRemoteCateService.insert(item);
+        imageRemoteLogService.insert(item);
         CommonUtils.executeSuccess(responseObject);
         return responseObject;
     }
@@ -97,11 +97,11 @@ public class ImageRemoteCateRest {
     
     @ResponseBody
     @PostMapping("edit")
-    public ResponseObject edit(@RequestBody  ImageRemoteCate item) {
-        String url = "ImageRemoteCate/create";
+    public ResponseObject edit(@RequestBody  ImageRemoteLog item) {
+        String url = "ImageRemoteLog/create";
         logger.info("访问 {} , 参数：{}", url, JSON.toJSON(item));
         ResponseObject responseObject = new ResponseObject();
-        imageRemoteCateService.update(item);
+        imageRemoteLogService.update(item);
         CommonUtils.executeSuccess(responseObject);
         return responseObject;
     }
@@ -111,12 +111,12 @@ public class ImageRemoteCateRest {
     @ResponseBody
     @PostMapping("remove")
     public ResponseObject delete(@RequestBody LongIdListVo longIdListVo) {
-        logger.info("访问 {} , 数量：{}", "ImageRemoteCate/remove", JSON.toJSON(longIdListVo));
+        logger.info("访问 {} , 数量：{}", "ImageRemoteLog/remove", JSON.toJSON(longIdListVo));
         ResponseObject resObj = new ResponseObject();
         if (CollectionUtils.isEmpty(longIdListVo.getIds())) {
             longIdListVo.setIds(Collections.singletonList(longIdListVo.getId()));
         }
-        CommonUtils.executeSuccess(resObj, imageRemoteCateService.delete(longIdListVo.getIds()));
+        CommonUtils.executeSuccess(resObj, imageRemoteLogService.delete(longIdListVo.getIds()));
         return resObj;
     }
 }

@@ -29,8 +29,8 @@ upload:
 
 mybatis:
   #mysql 环境
-  mapperLocations: classpath:mysql/com/mycmv/books/*.xml
+  mapperLocations: classpath:mysql/com/mycmv/res/*.xml
 logging:
   config: classpath:log4j2.xml
   level:
-    com.mycmv.fms.refund.mapper: trace
+    com.mycmv.resload.mapper: trace

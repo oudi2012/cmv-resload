@@ -1,6 +1,6 @@
 drop table if exists r_image_remote_cate;
 #id, title, orderNo, creator, createTime
-CREATE TABLE r_image_remote (
+CREATE TABLE r_image_remote_cate (
   id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   title varchar(100) NOT NULL,
   orderNo int(10) DEFAULT 0,

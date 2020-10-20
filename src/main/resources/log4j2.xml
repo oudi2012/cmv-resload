@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="info" monitorInterval="30" strict="true">
+
+    <Appenders>
+        <!-- 控制台输出 -->
+        <Console name="STDOUT" target="SYSTEM_OUT">
+            <PatternLayout charset="UTF-8" pattern="%d [%t] %-5level - %msg [%C.%M():%L]%n"/>
+        </Console>
+
+        <!--studentInfo-->
+        <RollingRandomAccessFile name="adminLogRollingFile" fileName="../logs/admin_log.log"
+                                 filePattern="../logs/admin_log-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout charset="UTF-8" pattern="%d [%t] %-5level - %msg [%C.%M():%L]%n"/>
+            <Filters>
+                <ThresholdFilter level="info"/>
+            </Filters>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="30"/>
+        </RollingRandomAccessFile>
+
+        <!--studentInfo-->
+        <RollingRandomAccessFile name="sysLogRollingFile" fileName="../logs/sys_log.log"
+                                 filePattern="../logs/sys_log-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout charset="UTF-8" pattern="%d [%t] %-5level - %msg [%C.%M():%L]%n"/>
+            <Filters>
+                <ThresholdFilter level="info"/>
+            </Filters>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="30"/>
+        </RollingRandomAccessFile>
+
+
+    </Appenders>
+
+    <Loggers>
+        <!-- 开发环境使用 -->
+        <Root level="info" includeLocation="true" additivity="true">
+            <AppenderRef ref="STDOUT"/>
+        </Root>
+
+        <logger name="adminLogRollingFile" level="info" additivity="true">
+            <AppenderRef ref="adminLogRollingFile"/>
+        </logger>
+
+        <logger name="sysLogRollingFile" level="info" additivity="true">
+            <AppenderRef ref="sysLogRollingFile"/>
+        </logger>
+    </Loggers>
+
+</Configuration>

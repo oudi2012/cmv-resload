@@ -1,10 +1,10 @@
 package com.mycmv.resload.mapper;
 
 
-import com.mycmv.resload.model.image.ImageRemoteCate;
+import com.mycmv.resload.model.image.ImageRemoteLog;
 
 /***
  * @author a
  */
-public interface ImageRemoteLogMapper extends ResBeanMapper<ImageRemoteCate> {
+public interface ImageRemoteLogMapper extends ResBeanMapper<ImageRemoteLog> {
 }
